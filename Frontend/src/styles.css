@@ -2,7 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom global styles */
-body {
-  @apply antialiased;
-}
+/* Custom globals */
+html, body { height: 100%; }
