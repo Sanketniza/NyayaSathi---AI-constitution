@@ -30,9 +30,9 @@ const Hero = () => {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold text-text-primary mb-6 leading-tight">
-            Justice.{' '}
+            Understand Your {' '}
             <span className="bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-300 inline-block font-extrabold">
-              <span className="text-text-primary">Simplified.</span>
+              <span className="text-text-primary">Rights, Anytime. Anywhere.</span>
             </span>
           </h1>
           
@@ -62,7 +62,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-text-primary mb-2 transform hover:scale-110 transition-transform duration-300 flex items-center justify-center gap-2">
-                🌍 3
+                🌍 3+
               </div>
               <div className="text-text-tertiary text-sm">Languages</div>
             </div>

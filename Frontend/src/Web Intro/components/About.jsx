@@ -10,7 +10,7 @@ const About = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+          <h2 className=" text-4xl md:text-5xl font-bold text-text-primary mb-6">
             About{' '}
             <span className="bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent font-extrabold">
               <span className="text-text-primary">NyayaSathi</span>
@@ -27,7 +27,7 @@ const About = () => {
               </div>
             </div>
             
-            <h3 className="text-2xl md:text-3xl font-bold text-text-primary text-center mb-6">
+            <h3 className="text-2xl md:text-3xl text-orange-500 font-bold  text-center mb-6">
               We are a team of engineers from D.Y. Patil College
             </h3>
             

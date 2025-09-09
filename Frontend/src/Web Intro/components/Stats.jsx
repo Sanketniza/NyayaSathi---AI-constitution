@@ -59,21 +59,21 @@ const Stats = () => {
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center mb-3 mx-auto transform hover:scale-125 hover:rotate-12 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50">
                     <span className="text-white font-bold text-xl">1</span>
                   </div>
-                  <p className="text-gray-400">Sign Up</p>
+                  <p className="text-gray-400">Upload / Ask</p>
                 </div>
                 <div className="w-8 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent animate-pulse"></div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center mb-3 mx-auto transform hover:scale-125 hover:rotate-12 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50">
                     <span className="text-white font-bold text-xl">2</span>
                   </div>
-                  <p className="text-gray-400">Configure</p>
+                  <p className="text-gray-400">AI Simplifies & Translates</p>
                 </div>
                 <div className="w-8 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent animate-pulse"></div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center mb-3 mx-auto transform hover:scale-125 hover:rotate-12 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50">
                     <span className="text-white font-bold text-xl">3</span>
                   </div>
-                  <p className="text-gray-400">Launch</p>
+                  <p className="text-gray-400">Get Answers with References</p>
                 </div>
               </div>
             </div>
