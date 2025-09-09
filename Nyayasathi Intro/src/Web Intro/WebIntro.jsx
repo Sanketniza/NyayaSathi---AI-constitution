@@ -12,7 +12,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
+
+function WebIntro() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-primary text-text-primary transition-colors duration-300">
@@ -31,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default WebIntro
