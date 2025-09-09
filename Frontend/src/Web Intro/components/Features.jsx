@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileText, Globe, Upload, Scale, ArrowBigLeft, ArrowBigRight } from 'lucide-react';
 import AI3DElements from './AI3DElements';
+import SpotlightCard from '../../../components/nurui/SpotlightCard';
 
 const Features = () => {
   const features = [
@@ -8,25 +9,29 @@ const Features = () => {
       icon: FileText,
       title: 'Plain Language Law',
       description: 'Legal jargon turned into simple words.',
-      color: 'text-accent'
+      color: 'text-accent',
+      glow: 'purple',
     },
     {
       icon: Globe,
       title: 'Multilingual Support',
       description: 'English, Hindi, Marathi (text & voice).',
-      color: 'text-accent-secondary'
+      color: 'text-accent-secondary',
+      glow: 'purple',
     },
     {
       icon: Upload,
       title: 'Upload & Query',
       description: 'Ask questions directly from documents.',
-      color: 'text-accent'
+      color: 'text-accent',
+      glow: 'purple',
     },
     {
       icon: Scale,
       title: 'Incident Guide',
       description: 'Get IPC sections & punishments for real-life cases.',
-      color: 'text-accent-secondary'
+      color: 'text-accent-secondary',
+      glow: 'purple',
     }
   ];
 
@@ -53,25 +58,17 @@ const Features = () => {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="group">
-                <div className="bg-surface-secondary/80 backdrop-blur-md rounded-2xl border border-border p-8 text-center transform hover:scale-105 hover:-translate-y-4 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/25 hover:border-accent/40"
-                     style={{
-                       transform: `perspective(1000px) rotateX(${Math.sin(index * 0.8) * 2}deg) rotateY(${Math.cos(index * 0.6) * 2}deg)`,
-                       animationDelay: `${index * 150}ms`
-                     }}>
-                  
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent-secondary/20 rounded-xl flex items-center justify-center mb-6 mx-auto group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-accent/50">
-                    <Icon className={`w-8 h-8 ${feature.color}`} />
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-text-primary mb-4 group-hover:text-accent transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    {feature.description}
-                  </p>
+              <SpotlightCard key={index} glowColor={feature.glow} size="md" className="rounded-2xl border border-border p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent-secondary/20 rounded-xl flex items-center justify-center mb-6 mx-auto group">
+                  <Icon className={`w-8 h-8 ${feature.color} transition-transform duration-300 group-hover:scale-125 group-hover:text-accent`} />
                 </div>
-              </div>
+                <h3 className="text-xl font-bold text-text-primary mb-4">
+                  {feature.title}
+                </h3>
+                <p className="text-text-secondary leading-relaxed">
+                  {feature.description}
+                </p>
+              </SpotlightCard>
             );
           })}
         </div>
@@ -79,7 +76,7 @@ const Features = () => {
         {/* CTA Section */}
         <div className="text-center mt-16">
 
-          <div className="bg-gradient-to-r from-accent/10 to-accent-secondary/10 border border-[#1b2028] rounded-2xl p-12 max-w-4xl mx-auto transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/25 hover:border-accent/40">
+          <div className="bg-gradient-to-r from-accent/10 to-accent-secondary/10 border border-[#123156] rounded-2xl p-12 max-w-4xl mx-auto transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/25 hover:border-accent/40">
             <h3 className="text-3xl font-bold text-text-primary mb-4">
               Ready to simplify legal complexity?
             </h3>

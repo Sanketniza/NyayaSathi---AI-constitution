@@ -63,7 +63,7 @@ const HowItWorks = () => {
                     
                     {/* Step number */}
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-accent to-accent-secondary rounded-full flex items-center justify-center text-surface-primary font-bold text-sm group-hover:scale-125 transition-transform duration-300">
+                      <div className="w-8 h-8  bg-gradient-to-r from-accent to-accent-secondary rounded-full flex items-center justify-center text-surface-primary font-bold text-sm group-hover:scale-125 transition-transform duration-300">
                         {index + 1}
                       </div>
                     </div>
@@ -72,7 +72,7 @@ const HowItWorks = () => {
                       <div className={`w-16 h-16 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center mb-4 mx-auto group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-accent/50`}>
                         <Icon className="w-8 h-8 text-surface-primary" />
                       </div>
-                      <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-[#0073ff] mb-3 group-hover:text-accent transition-colors duration-300">
                         {step.title}
                       </h3>
                       <p className="text-text-secondary leading-relaxed">
