@@ -3,7 +3,7 @@ import { Menu, X, Zap } from 'lucide-react';
 import ThemeSelector from './ThemeSelector';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface-primary/80 backdrop-blur-md border-b border-border transform-gpu">
@@ -33,7 +33,7 @@ const Header = () => {
               Try Demo
             </button>
             <button className="px-6 py-2 bg-gradient-to-r from-accent to-accent-secondary text-surface-primary rounded-lg hover:from-accent/80 hover:to-accent-secondary/80 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/50">
-              Learn More
+              Log In
             </button>
           </div>
 
@@ -61,7 +61,7 @@ const Header = () => {
                 Try Demo
               </button>
               <button className="px-6 py-2 bg-gradient-to-r from-accent to-accent-secondary text-surface-primary rounded-lg hover:from-accent/80 hover:to-accent-secondary/80 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-accent/50">
-                Learn More
+                Sign Up
               </button>
             </div>
           </div>
