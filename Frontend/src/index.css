@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom globals */
+
+.app-bg {
+  background-image: url('/bg-image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* Theme Variables */
 :root {
   /* Light Theme */

@@ -12,6 +12,7 @@ const Header = () => {
           <div className="flex items-center space-x-2 transform hover:scale-105 transition-transform duration-300">
             <div className="w-8 h-8 bg-gradient-to-r from-accent to-accent-secondary rounded-lg flex items-center justify-center transform hover:rotate-12 transition-all duration-300 hover:shadow-lg hover:shadow-accent/50">
               <Zap className="w-5 h-5 text-surface-primary" />
+                {/* <img src="./src/assets/logo1.png" alt="Logo" className="w-5 h-5" /> */}
             </div>
             <span className="text-xl font-bold text-text-primary">Nyayasathi</span>
           </div>
