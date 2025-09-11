@@ -32,7 +32,7 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-text-primary mb-6 leading-tight">
             Understand Your {' '}
             <span className="bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-300 inline-block font-extrabold">
-              <span className="text-text-primary">Rights, Anytime. Anywhere.</span>
+              <span className="text-teal-500">Rights, Anytime. Anywhere.</span>
             </span>
           </h1>
           
