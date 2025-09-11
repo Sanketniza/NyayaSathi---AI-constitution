@@ -11,6 +11,7 @@ import Stats from './components/Stats';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AdminsDetails from './components/AdminsDetails';
 
 
 function WebIntro() {
@@ -25,6 +26,7 @@ function WebIntro() {
         <Impact />
         <Stats />
         <About />
+        <AdminsDetails />
         <Contact />
         <Footer />
       </div>
@@ -32,4 +34,4 @@ function WebIntro() {
   );
 }
 
-export default WebIntro
+export default WebIntro;
