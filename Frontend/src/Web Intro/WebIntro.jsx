@@ -14,6 +14,8 @@ import Footer from './components/Footer';
 import AdminsDetails from './components/AdminsDetails';
 
 
+
+
 function WebIntro() {
   return (
     <ThemeProvider>

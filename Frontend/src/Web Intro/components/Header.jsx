@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
 import ThemeSelector from './ThemeSelector';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -63,6 +65,7 @@ const Header = () => {
               <button className="px-6 py-2 bg-gradient-to-r from-accent to-accent-secondary text-surface-primary rounded-lg hover:from-accent/80 hover:to-accent-secondary/80 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-accent/50">
                 Sign Up
               </button>
+              
             </div>
           </div>
         )}
