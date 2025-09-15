@@ -22,70 +22,71 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-            Get In Touch
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Have questions about NyayaSathi? We'd love to hear from you.
-          </p>
-        </div>
+        <section id="contact" className="py-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Email</p>
-                    <p className="text-white font-medium">nyayasathi.team@gmail.com</p>
-                  </div>
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                        Get In Touch
+                    </h2>
+
+                    <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Have questions about NyayaSathi? We'd love to hear from you.
+                    </p>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Location</p>
-                    <p className="text-white font-medium">D.Y. Patil College, Pune</p>
-                  </div>
-                </div>
+                <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+             {/* Contact Info */}
+                <div className="space-y-8">
+                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                    <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
+                    
+                    <div className="space-y-6">
+                        <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                            <Mail className="w-6 h-6 text-purple-400" />
+                        </div>
+                        <div>
+                            <p className="text-gray-400 text-sm">Email</p>
+                            <p className="text-white font-medium">nyayasathi.team@gmail.com</p>
+                        </div>
+                        </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Response Time</p>
-                    <p className="text-white font-medium">Within 24 hours</p>
-                  </div>
-                </div>
-              </div>
+                        <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <MapPin className="w-6 h-6 text-blue-400" />
+                        </div>
+                        <div>
+                            <p className="text-gray-400 text-sm">Location</p>
+                            <p className="text-white font-medium">D.Y. Patil College, Pune</p>
+                        </div>
+                        </div>
 
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <p className="text-gray-400 mb-4">Follow us on social media</p>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
-                    <Github className="w-5 h-5 text-gray-400 hover:text-white" />
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
-                    <Linkedin className="w-5 h-5 text-gray-400 hover:text-white" />
-                  </a>
+                        <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <Phone className="w-6 h-6 text-green-400" />
+                        </div>
+                        <div>
+                            <p className="text-gray-400 text-sm">Response Time</p>
+                            <p className="text-white font-medium">Within 24 hours</p>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 pt-8 border-t border-white/10">
+                        <p className="text-gray-400 mb-4">Follow us on social media</p>
+                        <div className="flex space-x-4">
+                        <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <Github className="w-5 h-5 text-gray-400 hover:text-white" />
+                        </a>
+                        <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <Linkedin className="w-5 h-5 text-gray-400 hover:text-white" />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
           {/* Contact Form */}
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
@@ -149,10 +150,10 @@ const Contact = () => {
               </button>
             </form>
           </div>
-        </div>
-      </div>
-    </section>
-  );
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default Contact;

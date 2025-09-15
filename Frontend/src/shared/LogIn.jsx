@@ -1,10 +1,16 @@
 import React from "react";
 import ContactForm from "../..//components/nurui/contact-form";
+import Header from "../Web Intro/components/Header";
+import { ThemeProvider } from "../Web Intro/components/ThemeProvider";
 const LogIn = () => {
-  return (
-    <div className="p-10">
-      <ContactForm />
-    </div>
-  );
+
+
+
+    return (
+        <>
+
+            <ContactForm />
+        </>
+    );
 };
 export default LogIn;

@@ -18,22 +18,22 @@ import AdminsDetails from './components/AdminsDetails';
 
 function WebIntro() {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-primary text-text-primary transition-colors duration-300">
-        <Header />
-        <Hero />
-        <Dashboard />
-        <Features />
-        <HowItWorks />
-        <Impact />
-        <Stats />
-        <About />
-        <AdminsDetails />
-        <Contact />
-        <Footer />
-      </div>
-    </ThemeProvider>
-  );
+        <ThemeProvider>
+            <div className="min-h-screen bg-primary text-text-primary transition-colors duration-300">
+                <Header />
+                <Hero />
+                <Dashboard />
+                <Features />
+                <HowItWorks />
+                <Impact />
+                <Stats />
+                <About />
+                <AdminsDetails />
+                <Contact />
+                <Footer />
+            </div>
+        </ThemeProvider>
+    );
 }
 
 export default WebIntro;
