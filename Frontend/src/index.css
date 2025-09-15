@@ -11,6 +11,13 @@
   background-repeat: no-repeat;
 }
 
+/* Register page background: deep navy to purple radial fade */
+.register-bg {
+  background: radial-gradient(circle at 50% 0%, rgba(15,23,42,1) 0%, rgba(15,23,42,1) 45%, rgba(45,24,100,1) 70%, rgba(76,34,150,1) 85%, #4b2bbd 100%);
+  /* Fallback solid color */
+  background-color: #0f172a;
+}
+
 /* Theme Variables */
 :root {
   /* Light Theme */
