@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { Ear, Earth, EyeIcon } from 'lucide-react';
-import User from '../assets/Icon/username.png';
 import Password from '../assets/Icon/pass.png';
 import Email from '../assets/Icon/email (1).png';
 import { Eye, EyeOff } from 'lucide-react';
@@ -35,7 +33,7 @@ const LogIn = () => {
                     
                     <form className="w-full space-y-6 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl">
 
-                            <button style={{width: '80%', margin: '10px auto' }} className="flex items-center justify-center w-full px-4 py-2 text-white bg-transparent border-2 border-gray-700 focus:border-pink-600 rounded-full hover:bg-[#3A3C3F]">
+                            <button style={{width: '80%', margin: '10px auto' }} className="flex items-center justify-center w-full px-4 py-2 text-white bg-transparent border-2 border-gray-700 focus:border-pink-600 rounded-full hover:bg-[#1b4f4b81]">
                                 <img src={google} className="w-6 h-6 mr-5" alt="google" />
                                 Continue with Google 
                             </button>
