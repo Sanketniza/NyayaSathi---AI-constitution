@@ -31,9 +31,9 @@ const LogIn = () => {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight">Login to your account</h1>
                     <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Start exploring the platform in seconds.</p>
                     
-                    <form className="w-full space-y-6 bg-white/5 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl">
+                    <form className="w-full space-y-6 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#011f24] shadow-2xl">
 
-                            <button style={{width: '80%', margin: '10px auto' }} className="flex items-center justify-center w-full px-4 py-2 text-white bg-transparent border-2 border-gray-700 focus:border-pink-600 rounded-full hover:bg-[#1b4f4b81]">
+                            <button style={{width: '80%', margin: '10px auto' }} className="flex items-center justify-center w-full px-4 py-2 text-white bg-transparent border-2 border-gray-700 focus:border-teal-500 rounded-full hover:bg-[#1b4f4b81]">
                                 <img src={google} className="w-6 h-6 mr-5" alt="google" />
                                 Continue with Google 
                             </button>
