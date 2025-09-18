@@ -33,11 +33,11 @@ function ForgetPassword() {
 
                            
                             
-                            <div className="flex items-center justify-center my-4">
-                                <hr className="w-8 h-px bg-[#4A4C51]"/>
-                                <p className="px-4 text-sm text-[#4A4C51]">Reset your password</p>
-                                <hr className="w-8 h-px bg-[#4A4C51]"/>
-                            </div>                        
+                        <div className="flex items-center justify-center my-4">
+                            <hr className="w-8 h-px bg-[#4A4C51]"/>
+                            <p className="px-4 text-sm text-[#4A4C51]">Reset your password</p>
+                            <hr className="w-8 h-px bg-[#4A4C51]"/>
+                        </div>                        
                         
                         <div className="space-y-2">
                             <label className="text-white font-medium text-sm tracking-wide">Email</label>
@@ -52,11 +52,9 @@ function ForgetPassword() {
                             </div>
                         </div>
 
-                        
-                       
 
                         <div className="flex justify-end mr-5">
-                           <Link to="/login" className='text-white hover:underline hover:text-blue-600 text-xs'>back to login</Link>
+                           <Link to="/resetpassword" className='text-white hover:underline hover:text-blue-600 text-xs'>back to login</Link>
                         </div>
                         
                         <button 
