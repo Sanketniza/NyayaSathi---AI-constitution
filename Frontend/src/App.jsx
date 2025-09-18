@@ -7,8 +7,8 @@ import Register from "./shared/Register";
 import WebIntro from "./Web Intro/WebIntro";
 
 import {
-  createBrowserRouter,
-  RouterProvider,
+    createBrowserRouter,
+    RouterProvider,
 } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -42,14 +42,13 @@ const router = createBrowserRouter([
         element:<ResetPassword/>
     }
     
-])
+]);
 
 
 function App() {
     return (
         <>
             <RouterProvider router={router} />
-            
         </>
     );
 }
