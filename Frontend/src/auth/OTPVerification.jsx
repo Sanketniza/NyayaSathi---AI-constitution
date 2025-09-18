@@ -4,6 +4,9 @@ import Footer from '../shared/Footer';
 import { Link } from 'react-router-dom';
 
 function OTPVerification() {
+
+    const email = "sanket@gmail.com"
+
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [timeLeft, setTimeLeft] = useState(120); // 2 minutes countdown
     const [canResend, setCanResend] = useState(false);
@@ -100,7 +103,7 @@ function OTPVerification() {
                 <main className="relative mx-auto max-w-6xl px-4 flex-1 w-full flex items-center justify-center">
                     <section className="w-full max-w-xl">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight">OTP Verification</h1>
-                        <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Enter the 6-digit code sent to your registered mobile number.</p>
+                        <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Enter the 6-digit code sent to your registered email.</p>
                         
                         <form onSubmit={handleSubmit} className="w-full space-y-6 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#011f24] shadow-2xl">
     
@@ -111,6 +114,13 @@ function OTPVerification() {
                                     <p className="px-4 text-sm text-[#4A4C51]"> OTP Verification</p>
                                     <hr className="w-8 h-px bg-[#4A4C51]"/>
                                 </div>
+
+                                 {/*Display Email on which opt send  */}
+                                 <div>
+                                    <p className="mb-2 text-center text-sm text-gray-400">
+                                        We&apos;ve sent a 6-digit code to <span className="text-emerald-500 font-semibold">{email || 'your email'}</span>. 
+                                    </p>
+                                 </div>
 
                                 {/* OTP Input Boxes */}
                                 <div className="flex justify-center space-x-3 mb-6">
@@ -172,7 +182,8 @@ function OTPVerification() {
                 </main>
     
                 <Footer />
-            </div>
+                
+                </div>
             </>
             
         )

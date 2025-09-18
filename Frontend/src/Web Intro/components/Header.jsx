@@ -37,7 +37,7 @@ const Header = () => {
                     </button>
 
                     <button className="px-6 py-2 bg-gradient-to-r from-accent to-accent-secondary text-surface-primary rounded-lg hover:from-accent/80 hover:to-accent-secondary/80 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/50">
-                        <Link to="/register">Sign Up </Link>
+                        <Link to="/login" className="text-text-secondary"> SignIn/Up </Link>
                     </button>
                 </div>
 
