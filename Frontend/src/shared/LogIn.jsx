@@ -61,6 +61,7 @@ const LogIn = () => {
                                 />
                             </div>
                         </div>
+
                         
                         <div className="space-y-2">
                             <label className="text-white font-medium text-sm tracking-wide">Password</label>
@@ -84,6 +85,10 @@ const LogIn = () => {
                                 </button>
                             </div>
                         </div>
+
+                        <div className="flex justify-end mr-5">
+                           <Link to="/forgetpassword" className='text-white hover:underline hover:text-blue-600 text-xs'>Forget Password?</Link>
+                        </div>
                         
                         <button 
                             type="submit" 
@@ -92,7 +97,7 @@ const LogIn = () => {
                             LogIn
                         </button>
 
-                        <p className="my-2 text-xs text-center text-white">Do not have an account?  <Link to='/register' className="text-base text-blue-900 hover:underline">Login</Link> </p>
+                        <p className="my-2 text-xs text-center text-white">Do not have an account?  <Link to='/register' className="text-base text-blue-900 hover:underline">Register</Link> </p>
                         
                     </form>
                 </section>

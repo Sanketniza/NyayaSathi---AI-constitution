@@ -1,4 +1,7 @@
 
+import ForgetPassword from "./auth/ForgetPassword";
+import OTPVerification from "./auth/OTPVerification";
+import ResetPassword from "./auth/ResetPassword";
 import LogIn from "./shared/LogIn";
 import Register from "./shared/Register";
 import WebIntro from "./Web Intro/WebIntro";
@@ -23,6 +26,21 @@ const router = createBrowserRouter([
         path:"/register",
         element:<Register/>
     },
+
+    {
+        path:"/otpverification",
+        element:<OTPVerification/>
+    },
+
+    {
+        path:"/forgetpassword",
+        element:<ForgetPassword/>
+    },
+
+    {
+        path:"/resetpassword",
+        element:<ResetPassword/>
+    }
     
 ])
 
