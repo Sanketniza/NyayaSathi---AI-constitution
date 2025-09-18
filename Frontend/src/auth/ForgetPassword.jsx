@@ -27,7 +27,7 @@ function ForgetPassword() {
             <main className="relative mx-auto max-w-6xl px-4 flex-1 w-full flex items-center justify-center">
                 <section className="w-full max-w-xl">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight"> Forget Password</h1>
-                    <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Start exploring the platform in seconds.</p>
+                    <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Enter your registered email to reset your password.</p>
                     
                     <form className="w-full space-y-6 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#011f24] shadow-2xl">
 
