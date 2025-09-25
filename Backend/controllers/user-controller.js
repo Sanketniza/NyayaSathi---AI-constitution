@@ -177,7 +177,9 @@ export const forgotPassword = async (req, res) => {
 // Reset Password
 // =========================
 export const resetPassword = async (req, res) => {
+
   try {
+
     const { email, otp, newPassword } = req.body;
     const user = await User.findOne({ email }).select("+password");
 
@@ -202,6 +204,7 @@ export const resetPassword = async (req, res) => {
 // User Profile (self)
 // =========================
 export const getUserProfile = async (req, res) => {
+  
   try {
     const user = await User.findById(req.user.userId).select("-password -refreshToken");
     if (!user) return res.status(404).json({ message: "User not found" });
