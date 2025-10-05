@@ -16,11 +16,7 @@ export const protect = async (req, res, next) => {
 
     try {
       // Verify token
-      console.log('Token received:', token.substring(0, 20) + '...');
-      console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
-      
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log('Token decoded successfully:', decoded);
       
       // Get user from token
       req.user = await User.findById(decoded.id).select('-password');
