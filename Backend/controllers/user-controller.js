@@ -73,7 +73,10 @@ export const verifyEmail = async (req, res) => {
     user.otpExpire = undefined;
     await user.save();
 
-    res.status(200).json({ message: "Email verified successfully. You can now log in." });
+    res.status(200).json({ 
+        message: "Email verified successfully. You can now log in." 
+    });
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

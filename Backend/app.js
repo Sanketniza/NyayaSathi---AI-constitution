@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from './DB/db.js';
 import rateLimit from 'express-rate-limit';
 
-// import userRoutes from './routes/user.route.js';
+import userRoutes from './routes/user-route.js';
 // import companyRoutes from './routes/company.route.js';
 // import productRoutes from './routes/product.route.js';
 // import orderRoutes from './routes/order.route.js';
@@ -45,8 +45,15 @@ app.use(limiter);
 
 const PORT = process.env.PORT || 3000;
 
+// Debug middleware
+app.use((req, res, next) => {
+    console.log('Request Body:', req.body);
+    console.log('Content-Type:', req.headers['content-type']);
+    next();
+});
+
 //* Routes
-// app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/user', userRoutes);
 // app.use('/api/v1/company', companyRoutes);
 // app.use('/api/v1/product', productRoutes);
 // app.use('/api/v1/order', orderRoutes);
