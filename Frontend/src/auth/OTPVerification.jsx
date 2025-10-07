@@ -32,6 +32,11 @@ function OTPVerification() {
         if (value && index < 5) {
             inputRefs.current[index + 1]?.focus();
         }
+        
+        // Auto-submit when all 6 digits are entered
+        if (newOtp.every(digit => digit !== '') && index === 5) {
+            setTimeout(() => handleSubmit(null, newOtp.join('')), 300);
+        }
     };
 
     const handleKeyDown = (index, e) => {
@@ -68,14 +73,16 @@ function OTPVerification() {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const otpValue = otp.join('');
-        if (otpValue.length === 6) {
-            console.log('OTP submitted:', otpValue);
+    const handleSubmit = (e, otpValue = null) => {
+        if (e) e.preventDefault();
+        const finalOtp = otpValue || otp.join('');
+        if (finalOtp.length === 6) {
+            console.log('OTP submitted:', finalOtp);
             // Handle OTP verification logic here
+            // Example: call API to verify OTP
+            alert(`✅ OTP ${finalOtp} submitted successfully!`);
         } else {
-            alert('Please enter all 6 digits');
+            alert('⚠️ Please enter all 6 digits');
         }
     };
 
@@ -103,7 +110,15 @@ function OTPVerification() {
                 <main className="relative mx-auto max-w-6xl px-4 flex-1 w-full flex items-center justify-center">
                     <section className="w-full max-w-xl">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight">OTP Verification</h1>
-                        <p className="text-sm sm:text-base text-white/70 mb-6 sm:mb-8">Enter the 6-digit code sent to your registered email.</p>
+                        <p className="text-sm sm:text-base text-white/70 mb-4">We've sent a beautiful verification email with your 6-digit OTP code.</p>
+                        <div className="bg-blue-500/20 border border-blue-500/30 rounded-xl p-4 mb-6 sm:mb-8">
+                            <div className="flex items-center text-blue-300 text-sm">
+                                <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+                                </svg>
+                                <span>💡 <strong>Pro Tip:</strong> Check your email and click the OTP code to copy it instantly, then paste it here!</span>
+                            </div>
+                        </div>
                         
                         <form onSubmit={handleSubmit} className="w-full space-y-6 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#011f24] shadow-2xl">
     
@@ -123,7 +138,7 @@ function OTPVerification() {
                                  </div>
 
                                 {/* OTP Input Boxes */}
-                                <div className="flex justify-center space-x-3 mb-6">
+                                <div className="flex justify-center space-x-2 sm:space-x-3 mb-6">
                                     {otp.map((digit, index) => (
                                         <input
                                             key={index}
@@ -136,11 +151,25 @@ function OTPVerification() {
                                             onChange={(e) => handleOtpChange(index, e.target.value)}
                                             onKeyDown={(e) => handleKeyDown(index, e)}
                                             onPaste={handlePaste}
-                                            className="w-12 h-12 sm:w-14 sm:h-14 text-center text-xl font-bold bg-gray-800/50 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none transition-all duration-200"
+                                            className={`w-10 h-10 sm:w-14 sm:h-14 text-center text-xl sm:text-2xl font-bold bg-white/10 border-2 rounded-xl text-white focus:outline-none transition-all duration-300 ${
+                                                digit ? 'border-cyan-400 bg-cyan-400/20 shadow-lg shadow-cyan-400/25' : 'border-gray-600 hover:border-gray-500'
+                                            } focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 focus:bg-cyan-400/10`}
                                             autoComplete="off"
                                         />
                                     ))}
                                 </div>
+
+                                {/* Success indicator when all digits filled */}
+                                {otp.every(digit => digit !== '') && (
+                                    <div className="text-center mb-4">
+                                        <div className="inline-flex items-center px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm">
+                                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                            </svg>
+                                            OTP Complete - Auto-verifying...
+                                        </div>
+                                    </div>
+                                )}
 
                                 {/* Timer and Resend */}
                                 <div className="text-center space-y-3">

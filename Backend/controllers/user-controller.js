@@ -42,11 +42,11 @@ export const registerUser = async (req, res) => {
         const otp = user.generateOTP();
         await user.save();
 
-        // Send OTP email
-        await sendEmail(email, "Verify your account", `Your OTP is: ${otp}`);
+        // Send beautiful OTP email
+        await sendEmail(email, "Verify your account", null, otp, 'verification');
 
         res.status(201).json({
-            message: "User registered. Please verify your email via OTP.",
+            message: "User registered successfully! Please check your email for the verification OTP.",
         });
         
     } catch (error) {
@@ -168,9 +168,9 @@ export const forgotPassword = async (req, res) => {
     const otp = user.generateOTP();
     await user.save();
 
-    await sendEmail(email, "Password Reset OTP", `Your OTP is: ${otp}`);
+    await sendEmail(email, "Password Reset OTP", null, otp, 'reset');
 
-    res.status(200).json({ message: "OTP sent to your email" });
+    res.status(200).json({ message: "Password reset OTP sent to your email. Please check your inbox." });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
