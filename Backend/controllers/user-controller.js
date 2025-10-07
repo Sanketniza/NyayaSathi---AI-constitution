@@ -31,12 +31,37 @@ export const registerUser = async (req, res) => {
         let user = await User.findOne({ email }); // Check if user already exists
 
         if (user) {
-            return res.status(400).json({ 
-                message: "Email already exists"
+            // If user exists and is already verified
+            if (user.isVerified) {
+                return res.status(400).json({ 
+                    message: "Email already registered and verified. Please login instead.",
+                    action: "login"
+                });
+            }
+            
+            // If user exists but NOT verified - allow re-registration with new OTP
+            console.log("User exists but not verified. Sending new OTP...");
+            
+            // Update user details (in case they want to change name)
+            user.name = name;
+            user.password = password; // This will be hashed by pre-save middleware
+            
+            // Generate new OTP
+            const otp = user.generateOTP();
+            await user.save();
+
+            // Send beautiful OTP email
+            await sendEmail(email, "Verify your account - New OTP", null, otp, 'verification');
+
+            return res.status(200).json({
+                message: "Account exists but not verified. We've sent a new verification OTP to your email.",
+                action: "verify",
+                email: email
             });
         }
 
-        user = new User({ name, email, password }); // Create new user
+        // Create new user if doesn't exist
+        user = new User({ name, email, password }); 
 
         // Generate OTP
         const otp = user.generateOTP();
@@ -47,11 +72,50 @@ export const registerUser = async (req, res) => {
 
         res.status(201).json({
             message: "User registered successfully! Please check your email for the verification OTP.",
+            action: "verify",
+            email: email
         });
         
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+};
+
+// =========================
+// Resend OTP for Email Verification
+// =========================
+export const resendOTP = async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found. Please register first." });
+    }
+    
+    if (user.isVerified) {
+      return res.status(400).json({ 
+        message: "Email already verified. You can login now.",
+        action: "login"
+      });
+    }
+    
+    // Generate new OTP
+    const otp = user.generateOTP();
+    await user.save();
+    
+    // Send new OTP email
+    await sendEmail(email, "New Verification OTP", null, otp, 'verification');
+    
+    res.status(200).json({
+      message: "New verification OTP sent to your email successfully!",
+      action: "verify",
+      email: email
+    });
+    
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 // =========================
@@ -90,14 +154,28 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email }).select("+password");
-    if (!user) return res.status(404).json({ message: "Invalid email or password" });
+    if (!user) {
+      return res.status(404).json({ 
+        message: "No account found with this email. Please register first.",
+        action: "register"
+      });
+    }
 
     if (!user.isVerified) {
-      return res.status(401).json({ message: "Please verify your email first" });
+      return res.status(401).json({ 
+        message: "Please verify your email first. Check your inbox or request a new OTP.",
+        action: "verify",
+        email: email
+      });
     }
 
     const isMatch = await user.matchPassword(password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
+    if (!isMatch) {
+      return res.status(400).json({ 
+        message: "Invalid password. Please check your password and try again.",
+        action: "retry"
+      });
+    }
 
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);

@@ -2,6 +2,7 @@ import express from 'express';
 import {
   registerUser,
   verifyEmail,
+  resendOTP,
   loginUser,
   logoutUser,
   refreshToken,
@@ -19,6 +20,7 @@ const router = express.Router();
 // Public routes
 router.post('/register', registerUser);          // Register and send verification OTP
 router.post('/verify-email', verifyEmail);       // Verify email with OTP
+router.post('/resend-otp', resendOTP);          // Resend OTP for email verification
 router.post('/login', loginUser);                // Login, returns tokens
 router.post('/refresh-token', refreshToken);    // Exchange refresh token for access token
 router.post('/forgot-password', forgotPassword);// Send OTP for password reset
