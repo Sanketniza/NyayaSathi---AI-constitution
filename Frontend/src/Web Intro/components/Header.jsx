@@ -22,7 +22,7 @@ const Header = () => {
                 <nav className="hidden md:flex items-center space-x-8">
                     <a href="#home" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Home</a>
                     <a href="#features" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Features</a>
-                    <NavLink to="" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Doc</NavLink>
+                    <NavLink to="/doc" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Doc</NavLink>
                     {/* <a href="#how-it-works" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">How It Works</a> */}
                     {/* <a href="#technology" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Technology</a> */}
                     {/* <a href="#impact" className="text-text-secondary hover:text-accent transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">Impact</a> */}

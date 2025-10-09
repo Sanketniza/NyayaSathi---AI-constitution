@@ -5,6 +5,7 @@ import ResetPassword from "./auth/ResetPassword";
 import LogIn from "./shared/LogIn";
 import Register from "./shared/Register";
 import WebIntro from "./Web Intro/WebIntro";
+import Doc from "./Documentation/app";
 
 import {
     createBrowserRouter,
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
     {
         path:"/resetpassword",
         element:<ResetPassword/>
+    },
+
+    {
+        path:"/doc",
+        element:<Doc/>
     }
     
 ]);
