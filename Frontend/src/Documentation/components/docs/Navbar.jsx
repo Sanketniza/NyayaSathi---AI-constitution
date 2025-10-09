@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import {
   Search,
   Moon,
@@ -22,13 +23,13 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { icon: Home, label: 'Home', href: '/' },
-    { icon: MessageSquare, label: 'Chatbot', href: '/chatbot' },
-    { icon: FileText, label: 'Documentation', href: '/docs', active: true },
-    { icon: Brain, label: 'AI Architecture', href: '/architecture' },
-    { icon: Code, label: 'Developer API', href: '/api' },
-    { icon: Newspaper, label: 'Blog', href: '/blog' },
-    { icon: Phone, label: 'Contact', href: '/contact' },
+    { icon: Home, label: 'Home', to: '/' },
+    { icon: MessageSquare, label: 'Chatbot', to: '/chatbot' },
+    { icon: FileText, label: 'Documentation', to: '/docs' },
+    { icon: Brain, label: 'AI Architecture', to: '/architecture' },
+    { icon: Code, label: 'Developer API', to: '/api' },
+    { icon: Newspaper, label: 'Blog', to: '/blog' },
+    { icon: Phone, label: 'Contact', to: '/contact' },
   ];
 
   return (
@@ -46,7 +47,7 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
           </button>
 
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-3 group">
             <div className="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-shadow">
               <Scale size={20} className="text-white" />
             </div>
@@ -56,19 +57,19 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
               </h1>
               <span className="text-xs text-gray-500 dark:text-gray-400">AI Legal Assistant</span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
-                <a
+                <NavLink
                   key={link.label}
-                  href={link.href}
-                  className={`
+                  to={link.to}
+                  className={({ isActive }) => `
                     flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all
-                    ${link.active
+                    ${isActive
                       ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
                     }
@@ -76,7 +77,7 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
                 >
                   <Icon size={16} />
                   <span>{link.label}</span>
-                </a>
+                </NavLink>
               );
             })}
           </nav>
@@ -159,13 +160,13 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
-                <a
+                <NavLink
                   key={link.label}
-                  href={link.href}
+                  to={link.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`
+                  className={({ isActive }) => `
                     flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all
-                    ${link.active
+                    ${isActive
                       ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'
                     }
@@ -173,7 +174,7 @@ export function Navbar({ searchQuery, onSearchChange, isSidebarOpen, onToggleSid
                 >
                   <Icon size={20} />
                   <span>{link.label}</span>
-                </a>
+                </NavLink>
               );
             })}
 

@@ -11,6 +11,7 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import Error from "./ProtectionRoutes/Error";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
     {
         path:"/doc",
         element:<Doc/>
+    },
+
+    {
+        path:"*",
+        element:<Error/>
     }
     
 ]);
