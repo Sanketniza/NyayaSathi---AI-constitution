@@ -1,4 +1,5 @@
-import { Heart, Github, Linkedin } from 'lucide-react';
+import { Heart, Github, Linkedin, GithubIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -15,16 +16,16 @@ export function Footer() {
 
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/nyayasathi"
+              href="https://github.com/Sanketniza?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
               aria-label="GitHub Repository"
             >
-              <Github className="w-5 h-5" />
+              <GithubIcon className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com/company/nyayasathi"
+              href="https://www.linkedin.com/in/sanket-talekar-94087a263"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
@@ -37,13 +38,13 @@ export function Footer() {
 
         <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-gray-500 dark:text-gray-500">
-            <a href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Privacy Policy</a>
+            <Link to="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Privacy Policy</Link>
             <span>•</span>
-            <a href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Terms of Service</a>
+            <Link to="/terms" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Terms of Service</Link>
             <span>•</span>
-            <a href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Contact</a>
+            <Link to="/contact" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Contact</Link>
             <span>•</span>
-            <a href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">API Status</a>
+            <Link to="/status" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">API Status</Link>
           </div>
         </div>
       </div>

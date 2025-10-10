@@ -54,10 +54,7 @@ app.use((req, res, next) => {
 
 //* Routes
 app.use('/api/v1/user', userRoutes);
-// app.use('/api/v1/company', companyRoutes);
-// app.use('/api/v1/product', productRoutes);
-// app.use('/api/v1/order', orderRoutes);
-// app.use('/api/v1/payment', paymentRoutes);
+
 // app.use('/api/v1/notification', notificationRoutes);
 // app.use('/api/v1/cart', cartRoutes);
 // app.use('/api/v1/reviews', reviewRoutes);
