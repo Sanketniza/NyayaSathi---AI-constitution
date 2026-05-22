@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import {
   downloadFromS3,
   extractTextFromBuffer,
@@ -150,6 +151,15 @@ const isGeneralQuestion = (text = "") => {
   return false;
 };
 
+/** Questions about NyayaSathi itself — stay in auto mode even if a document pill is selected */
+const isAboutAssistantOnly = (text = "") => {
+  const t = text.trim().toLowerCase();
+  if (/\b(who are you|what are you|how are you)\b/.test(t)) return true;
+  if (/\b(tell me about|about)\s+(you|yourself|nyayasathi)\b/.test(t)) return true;
+  if (/^(what|who|how)\s+(is|are)\s+nyayasathi\b/.test(t)) return true;
+  return false;
+};
+
 /**
  * Determine if query should use simple/auto mode
  * Returns true for auto mode, false for contextual mode
@@ -157,7 +167,22 @@ const isGeneralQuestion = (text = "") => {
 const isSimpleQuery = async (text = "", documentId = null) => {
   const trimmed = text.trim();
   if (!trimmed) return false;
-  
+
+  // Priority 0: User selected a document in the UI → search that document (unless asking about the bot)
+  if (documentId && mongoose.Types.ObjectId.isValid(documentId) && !isAboutAssistantOnly(trimmed)) {
+    try {
+      const doc = await Document.findById(documentId).select("processed filename");
+      if (doc) {
+        console.log(
+          `🔍 Document selected (${doc.filename}, processed=${doc.processed}) — using contextual mode`
+        );
+        return false;
+      }
+    } catch (err) {
+      console.warn("⚠️ Could not load document for mode selection:", err.message);
+    }
+  }
+
   // Priority 1: If documentId provided AND query clearly targets uploaded document, use contextual
   if (documentId && isContextualQuery(trimmed)) {
     console.log("🔍 Document ID provided and document query detected, using contextual mode");
@@ -495,6 +520,47 @@ export const queryRag = async (req, res) => {
     });
 
     if (!matches.length) {
+      // User scoped to a specific document — never fall back to generic auto answers
+      if (documentId && mongoose.Types.ObjectId.isValid(documentId)) {
+        const doc = await Document.findById(documentId).select("processed filename").lean();
+        if (!doc) {
+          return res.status(200).json({
+            answer: "The selected document could not be found. Please upload or select another file.",
+            chunks: [],
+            language: langKey,
+            supportedLanguages,
+            mode: "contextual",
+            memoryUsed: false,
+            conversationId: currentConversationId,
+            isNewConversation,
+          });
+        }
+        if (!doc.processed) {
+          return res.status(200).json({
+            answer:
+              "This file is still being indexed or could not be read. Re-upload a PDF or Word document and wait until processing finishes, then try again.",
+            chunks: [],
+            language: langKey,
+            supportedLanguages,
+            mode: "contextual",
+            memoryUsed: false,
+            conversationId: currentConversationId,
+            isNewConversation,
+          });
+        }
+        return res.status(200).json({
+          answer:
+            "I searched the selected document but could not find passages relevant to your question. Try rephrasing or ask about specific sections mentioned in the file.",
+          chunks: [],
+          language: langKey,
+          supportedLanguages,
+          mode: "contextual",
+          memoryUsed: false,
+          conversationId: currentConversationId,
+          isNewConversation,
+        });
+      }
+
       // If no document matches BUT the question looks general/legal, fall back to auto mode
       if (isGeneralQuestion(query) || generalLegalPattern.test(query)) {
         console.log("ℹ️ No document matches found; falling back to auto mode for general/legal question");
@@ -566,13 +632,15 @@ export const queryRag = async (req, res) => {
     // CONTEXTUAL MODE: NO memory - only use document chunks
     const currentDate = new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
     const prompt = [
-      "You are NyayaSathi, an AI legal assistant.",
+      "You are NyayaSathi, an AI assistant that helps users understand their uploaded documents (including legal files, resumes, contracts, and reports).",
       `The current date is ${currentDate}. Keep this in mind for context.`,
       "",
       "Instructions:",
-      "- Answer the user's question using ONLY the provided context chunks from uploaded documents",
-      "- If the context does not contain relevant information, respond: 'I do not have enough information to answer this question based on the uploaded documents.'",
-      "- Do NOT use general knowledge or make assumptions",
+      "- Answer the user's question using ONLY the provided context chunks from their uploaded document",
+      "- For resumes/CVs, summarize skills, experience, education, and projects found in the text",
+      "- If the context does not contain relevant information, say clearly that the document does not include that information",
+      "- Do NOT refuse to answer merely because the topic is a person or resume — use whatever facts appear in the context",
+      "- Do NOT use outside knowledge or guess beyond the context",
       "- Be specific and cite relevant parts of the context when possible",
       "",
       `Respond in ${languageLabel}.`,

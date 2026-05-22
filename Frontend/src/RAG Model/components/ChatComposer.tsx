@@ -342,11 +342,26 @@ const ChatComposer = ({ onSendMessage, isLoading = false, selectedDocumentId, on
 
   // ── Send handler ──────────────────────────────────────────────────────────
   const handleSend = () => {
-    if (message.trim() && !isLoading) {
-      onSendMessage(message.trim(), selectedLanguage, selectedDocId || selectedDocumentId || undefined);
-      setMessage("");
-      if (textareaRef.current) textareaRef.current.style.height = "auto";
+    if (!message.trim() || isLoading) return;
+
+    const activeDocId = selectedDocId || selectedDocumentId || undefined;
+    if (activeDocId) {
+      const doc = documentsList.find((d) => d._id === activeDocId);
+      if (doc && doc.processed === false) {
+        toast({
+          title: "Document not ready",
+          description:
+            "This file is not indexed yet. Upload a PDF or Word document and wait for processing to complete, then ask your question again.",
+          variant: "destructive",
+          duration: 5000,
+        });
+        return;
+      }
     }
+
+    onSendMessage(message.trim(), selectedLanguage, activeDocId);
+    setMessage("");
+    if (textareaRef.current) textareaRef.current.style.height = "auto";
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
