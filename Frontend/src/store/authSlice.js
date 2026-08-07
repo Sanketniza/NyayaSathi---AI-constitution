@@ -1,5 +1,6 @@
 // src/features/auth/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import { REHYDRATE } from "redux-persist";
 import {
   registerUser,
   verifyOtp,
@@ -38,6 +39,12 @@ const authSlice = createSlice({
         // Mark app startup auth check as complete (called after PersistGate rehydration)
         setInitialized: (state) => {
             state.isInitializing = false;
+            state.loading = false;
+        },
+
+        // Clear a stuck global loading flag (e.g. after request timeout)
+        resetLoading: (state) => {
+            state.loading = false;
         },
 
         // local logout (clear client only)
@@ -66,6 +73,16 @@ const authSlice = createSlice({
     },
 
   extraReducers: (builder) => {
+    // After rehydration, discard any persisted transient flags from older persist versions
+    builder.addCase(REHYDRATE, (state, action) => {
+      if (action.payload?.auth) {
+        state.loading = false;
+        state.isInitializing = false;
+        state.error = null;
+        state.message = null;
+      }
+    });
+
     // REGISTER
     builder
       .addCase(registerUser.pending, (state) => {
@@ -295,5 +312,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { localLogout, clearError, clearMessage, setInitialized } = authSlice.actions;
+export const { localLogout, clearError, clearMessage, setInitialized, resetLoading } = authSlice.actions;
 export default authSlice.reducer;

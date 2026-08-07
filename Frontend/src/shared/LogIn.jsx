@@ -8,7 +8,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import google from '../assets/Icon/google.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/auth/authThunks';
-import { clearMessage, clearError } from '../store/authSlice';
+import { clearMessage, clearError, resetLoading } from '../store/authSlice';
 import useAutoDismiss from '../hooks/useAutoDismiss';
 import AutoDismissNotification from '../ProtectionRoutes/AutoDismissNotification';
 import { toast } from 'sonner';
@@ -29,12 +29,13 @@ const LogIn = () => {
 
     // Local state for password visibility
     const [showPassword, setShowPassword] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     
     // Local state for success message from navigation
     const [successMessage, setSuccessMessage] = useState('');
 
-    // Redux state
-    const { loading, error, message } = useSelector((state) => state.auth);
+    // Redux state (error/message only — loading is tracked locally per form)
+    const { error, message } = useSelector((state) => state.auth);
 
     // Auto-dismiss messages
     const messageState = useAutoDismiss(message, clearMessage, 3000, true);
@@ -88,7 +89,13 @@ const LogIn = () => {
         }
 
         // Dispatch login thunk
-        const resultAction = await dispatch(loginUser(formData));
+        setIsSubmitting(true);
+        let resultAction;
+        try {
+            resultAction = await dispatch(loginUser(formData));
+        } finally {
+            setIsSubmitting(false);
+        }
 
         // console.log("Login result:", resultAction);
 
@@ -118,6 +125,8 @@ const LogIn = () => {
     };
 
     const handleLoginTimeout = () => {
+        dispatch(resetLoading());
+        setIsSubmitting(false);
         toast.error('Request timed out. The server may be starting up — please try again in a moment.');
     };
 
@@ -126,7 +135,7 @@ const LogIn = () => {
     return (
         <>
             <AuthLoadingOverlay
-                isLoading={loading}
+                isLoading={isSubmitting}
                 message="Logging you in securely..."
                 timeoutMs={90000}
                 onTimeout={handleLoginTimeout}
@@ -221,10 +230,10 @@ const LogIn = () => {
                         
                         <button 
                             type="submit" 
-                            disabled={loading}
+                            disabled={isSubmitting}
                             className="w-full p-4 mt-8 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                         >
-                            {loading ? "Logging in..." : "LogIn"}
+                            {isSubmitting ? "Logging in..." : "LogIn"}
                         </button>
 
                         {/* Auto-dismissing notifications */}

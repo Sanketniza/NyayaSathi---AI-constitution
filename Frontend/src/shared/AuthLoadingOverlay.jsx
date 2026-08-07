@@ -40,11 +40,6 @@ function AuthLoadingOverlay({
       setTimedOut(true);
       clearInterval(ticker);
       onTimeout?.();
-      
-      // Redirect to login page after showing the message
-      setTimeout(() => {
-        window.location.href = '/login';
-      }, 3000);
     }, timeoutMs);
 
     return () => {

@@ -44,7 +44,6 @@ const conversationSchema = new mongoose.Schema(
 
 // Index for efficient queries
 conversationSchema.index({ userId: 1, lastMessageAt: -1 });
-conversationSchema.index({ conversationId: 1 });
 
 // Check if model already exists to avoid overwrite error
 const Conversation = mongoose.models.Conversation || mongoose.model("Conversation", conversationSchema);

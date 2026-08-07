@@ -12,6 +12,7 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
+    createMigrate,
 } from 'redux-persist';
 
 // ✅ Only persist the auth slice (user / token / isAuthenticated).
@@ -21,10 +22,27 @@ import {
 //  2. Persisting it causes cross-user data bleed: user B logging in from
 //     the same browser would briefly see user A's cached conversations
 //     until the API call completes.
+const authMigrate = createMigrate(
+    {
+        2: (state) => ({
+            ...state,
+            loading: false,
+            error: null,
+            message: null,
+            isInitializing: false,
+            pendingEmail: null,
+        }),
+    },
+    { debug: false }
+);
+
 const authPersistConfig = {
     key: 'auth',
-    version: 1,
+    version: 2,
     storage,
+    migrate: authMigrate,
+    // Never persist transient UI state — a stuck loading=true here blocks login/register on reload
+    blacklist: ['loading', 'error', 'message', 'isInitializing', 'pendingEmail'],
 };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authSlice);
